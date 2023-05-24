@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "org.forsteri.createappliedkinetics.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "createappliedkinetics.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

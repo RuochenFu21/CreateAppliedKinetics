@@ -1,0 +1,10 @@
+{
+  "item.createappliedkinetics.incomplete_calculation_processor_press": "ss\u01DD\u0279\u0500 \u0279oss\u01DD\u0254o\u0279\u0500 uo\u0131\u0287\u0250\u05DFn\u0254\u05DF\u0250\u0186 \u01DD\u0287\u01DD\u05DFd\u026Fo\u0254uI",
+  "item.createappliedkinetics.incomplete_engineering_processor_press": "ss\u01DD\u0279\u0500 \u0279oss\u01DD\u0254o\u0279\u0500 bu\u0131\u0279\u01DD\u01DDu\u0131bu\u018E \u01DD\u0287\u01DD\u05DFd\u026Fo\u0254uI",
+  "item.createappliedkinetics.incomplete_logic_processor_press": "ss\u01DD\u0279\u0500 \u0279oss\u01DD\u0254o\u0279\u0500 \u0254\u0131bo\uA780 \u01DD\u0287\u01DD\u05DFd\u026Fo\u0254uI",
+  "item.createappliedkinetics.incomplete_printed_calculation_circuit": "\u0287\u0131n\u0254\u0279\u0131\u0186 uo\u0131\u0287\u0250\u05DFn\u0254\u05DF\u0250\u0186 p\u01DD\u0287u\u0131\u0279\u0500 \u01DD\u0287\u01DD\u05DFd\u026Fo\u0254uI",
+  "item.createappliedkinetics.incomplete_printed_engineering_circuit": "\u0287\u0131n\u0254\u0279\u0131\u0186 bu\u0131\u0279\u01DD\u01DDu\u0131bu\u018E p\u01DD\u0287u\u0131\u0279\u0500 \u01DD\u0287\u01DD\u05DFd\u026Fo\u0254uI",
+  "item.createappliedkinetics.incomplete_printed_logic_circuit": "\u0287\u0131n\u0254\u0279\u0131\u0186 \u0254\u0131bo\uA780 p\u01DD\u0287u\u0131\u0279\u0500 \u01DD\u0287\u01DD\u05DFd\u026Fo\u0254uI",
+  "item.createappliedkinetics.incomplete_silicon_press": "ss\u01DD\u0279\u0500 uo\u0254\u0131\u05DF\u0131S \u01DD\u0287\u01DD\u05DFd\u026Fo\u0254uI",
+  "item.createappliedkinetics.incomplete_silicon_print": "\u0287u\u0131\u0279\u0500 uo\u0254\u0131\u05DF\u0131S \u01DD\u0287\u01DD\u05DFd\u026Fo\u0254uI"
+}

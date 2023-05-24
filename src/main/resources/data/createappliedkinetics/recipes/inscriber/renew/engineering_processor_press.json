@@ -1,0 +1,47 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "create:iron_sheet"
+  },
+  "transitionalItem": {
+    "item": "createappliedkinetics:incomplete_engineering_processor_press"
+  },
+  "sequence": [
+    {
+      "keepHeldItem": true,
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "createappliedkinetics:incomplete_engineering_processor_press"
+        },
+        {
+          "item": "ae2:engineering_processor_press"
+        }
+      ],
+      "results": [
+        {
+          "item": "createappliedkinetics:incomplete_engineering_processor_press"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "createappliedkinetics:incomplete_engineering_processor_press"
+        }
+      ],
+      "results": [
+        {
+          "item": "createappliedkinetics:incomplete_engineering_processor_press"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "ae2:engineering_processor_press"
+    }
+  ],
+  "loops": 1
+}

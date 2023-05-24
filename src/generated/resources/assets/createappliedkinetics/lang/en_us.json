@@ -1,0 +1,10 @@
+{
+  "item.createappliedkinetics.incomplete_calculation_processor_press": "Incomplete Calculation Processor Press",
+  "item.createappliedkinetics.incomplete_engineering_processor_press": "Incomplete Engineering Processor Press",
+  "item.createappliedkinetics.incomplete_logic_processor_press": "Incomplete Logic Processor Press",
+  "item.createappliedkinetics.incomplete_printed_calculation_circuit": "Incomplete Printed Calculation Circuit",
+  "item.createappliedkinetics.incomplete_printed_engineering_circuit": "Incomplete Printed Engineering Circuit",
+  "item.createappliedkinetics.incomplete_printed_logic_circuit": "Incomplete Printed Logic Circuit",
+  "item.createappliedkinetics.incomplete_silicon_press": "Incomplete Silicon Press",
+  "item.createappliedkinetics.incomplete_silicon_print": "Incomplete Silicon Print"
+}

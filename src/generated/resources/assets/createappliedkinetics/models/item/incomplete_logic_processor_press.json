@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "createappliedkinetics:item/incomplete_logic_processor_press"
+  }
+}

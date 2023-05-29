@@ -1,7 +1,7 @@
 {
   "type": "create:sequenced_assembly",
   "ingredient": {
-    "item": "minecraft:gold_ingot"
+    "item": "create:golden_sheet"
   },
   "transitionalItem": {
     "item": "createappliedkinetics:incomplete_printed_logic_circuit"

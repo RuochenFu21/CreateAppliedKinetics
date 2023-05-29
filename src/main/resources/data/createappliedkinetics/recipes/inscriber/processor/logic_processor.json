@@ -1,0 +1,62 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "ae2:printed_silicon"
+  },
+  "transitionalItem": {
+    "item": "createappliedkinetics:incomplete_logic_processor"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "createappliedkinetics:incomplete_logic_processor"
+        },
+        {
+          "item": "minecraft:redstone"
+        }
+      ],
+      "results": [
+        {
+          "item": "createappliedkinetics:incomplete_logic_processor"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "createappliedkinetics:incomplete_logic_processor"
+        },
+        {
+          "item": "ae2:printed_logic_processor"
+        }
+      ],
+      "results": [
+        {
+          "item": "createappliedkinetics:incomplete_logic_processor"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "createappliedkinetics:incomplete_logic_processor"
+        }
+      ],
+      "results": [
+        {
+          "item": "createappliedkinetics:incomplete_logic_processor"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "ae2:logic_processor"
+    }
+  ],
+  "loops": 1
+}

@@ -1,5 +1,5 @@
 {
-  "block.createappliedkinetics.energy_provider": "Energy Provider",
+  "block.createappliedkinetics.energy_provider": "能量传输器",
   "item.createappliedkinetics.incomplete_calculation_processor": "Incomplete Calculation Processor",
   "item.createappliedkinetics.incomplete_calculation_processor_press": "Incomplete Calculation Processor Press",
   "item.createappliedkinetics.incomplete_engineering_processor": "Incomplete Engineering Processor",
@@ -11,6 +11,6 @@
   "item.createappliedkinetics.incomplete_printed_logic_circuit": "Incomplete Printed Logic Circuit",
   "item.createappliedkinetics.incomplete_silicon_press": "Incomplete Silicon Press",
   "item.createappliedkinetics.incomplete_silicon_print": "Incomplete Silicon Print",
-  "itemGroup.createappliedkinetics": "Create Applied Kinetics",
-  "tooltip.createappliedkinetics.energy_provider": "\u00A77Provides energy to AE's \u00A7rEnergy Acceptor"
+  "itemGroup.createappliedkinetics": "机械动力：应用机械",
+  "tooltip.createappliedkinetics.energy_provider": "\u00A77将机械能量传输进应用能源的\u00A7r能源接收器"
 }

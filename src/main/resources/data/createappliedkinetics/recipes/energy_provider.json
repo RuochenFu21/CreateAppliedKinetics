@@ -1,0 +1,29 @@
+{
+  "type": "create:mechanical_crafting",
+  "pattern": [
+    " L ",
+    "CBC",
+    "SAS"
+  ],
+  "key": {
+    "S": {
+      "item": "create:brass_block"
+    },
+    "B": {
+      "item": "create:brass_casing"
+    },
+    "A": {
+      "item": "create:precision_mechanism"
+    },
+    "C": {
+      "item": "create:copper_sheet"
+    },
+    "L": {
+      "item": "create:brass_sheet"
+    }
+  },
+  "result": {
+    "item": "createappliedkinetics:energy_provider"
+  },
+  "acceptMirrored": false
+}

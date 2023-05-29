@@ -56,3 +56,16 @@ description='''
    versionRange="[1.18.2,1.19)"
    ordering="NONE"
    side="BOTH"
+[[dependencies.createappliedkinetics]]
+   modId="ae2"
+   mandatory=true
+   # This version range declares a minimum of the current minecraft version up to but not including the next major version
+   versionRange="[11.7.4,)"
+   ordering="AFTER"
+   side="BOTH"
+[[dependencies.createappliedkinetics]]
+   modId="create"
+   mandatory=true
+   versionRange="[0.5.1.a,)"
+   ordering="NONE"
+   side="BOTH"

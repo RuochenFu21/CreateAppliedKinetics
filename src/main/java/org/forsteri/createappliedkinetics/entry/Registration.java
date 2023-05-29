@@ -52,8 +52,8 @@ public class Registration {
         REGISTERATE.addRawLang("tooltip.createappliedkinetics.energy_provider", "§7Provides energy to AE's §rEnergy Acceptor");
     }
 
-    private static ItemEntry<SequencedAssemblyItem> sequencedIngredient(String name) {
-        return REGISTERATE.item(name, SequencedAssemblyItem::new)
+    private static void sequencedIngredient(String name) {
+        REGISTERATE.item(name, SequencedAssemblyItem::new)
                 .register();
     }
 

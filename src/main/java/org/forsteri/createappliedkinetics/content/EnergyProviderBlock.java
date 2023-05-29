@@ -102,8 +102,9 @@ public class EnergyProviderBlock extends DirectionalKineticBlock implements IBE<
         return canSurvive(Objects.requireNonNull(super.getStateForPlacement(context)).setValue(FACING, Objects.requireNonNull(super.getStateForPlacement(context)).getValue(FACING).getOpposite()), context.getLevel(), context.getClickedPos()) ? Objects.requireNonNull(super.getStateForPlacement(context)).setValue(FACING, Objects.requireNonNull(super.getStateForPlacement(context)).getValue(FACING).getOpposite()) : null;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
-    public @NotNull VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return AllShapes.CASING_11PX.get(state.getValue(FACING));
     }
 }

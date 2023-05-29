@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "createappliedkinetics:block/energy_provider",
+      "x": 180
+    },
+    "facing=up": {
+      "model": "createappliedkinetics:block/energy_provider"
+    },
+    "facing=north": {
+      "model": "createappliedkinetics:block/energy_provider",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "createappliedkinetics:block/energy_provider",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west": {
+      "model": "createappliedkinetics:block/energy_provider",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east": {
+      "model": "createappliedkinetics:block/energy_provider",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

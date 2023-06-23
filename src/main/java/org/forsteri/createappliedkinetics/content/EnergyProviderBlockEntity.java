@@ -24,9 +24,9 @@ public class EnergyProviderBlockEntity extends KineticBlockEntity {
 
         IGrid grid = blockEntity.getMainNode().getGrid();
         if (grid != null) {
-            grid.getEnergyService().injectPower(getSpeed() * 2, Actionable.MODULATE);
+            grid.getEnergyService().injectPower(Math.abs(getSpeed()) * 2, Actionable.MODULATE);
         } else {
-            blockEntity.injectAEPower(getSpeed() * 2, Actionable.MODULATE);
+            blockEntity.injectAEPower(Math.abs(getSpeed()) * 2, Actionable.MODULATE);
         }
 
         super.tick();

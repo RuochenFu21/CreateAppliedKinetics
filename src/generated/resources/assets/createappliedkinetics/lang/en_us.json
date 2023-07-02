@@ -1,5 +1,6 @@
 {
   "block.createappliedkinetics.energy_provider": "Energy Provider",
+  "block.createappliedkinetics.me_proxy": "ME Proxy",
   "item.createappliedkinetics.incomplete_calculation_processor": "Incomplete Calculation Processor",
   "item.createappliedkinetics.incomplete_calculation_processor_press": "Incomplete Calculation Processor Press",
   "item.createappliedkinetics.incomplete_engineering_processor": "Incomplete Engineering Processor",
@@ -12,5 +13,6 @@
   "item.createappliedkinetics.incomplete_silicon_press": "Incomplete Silicon Press",
   "item.createappliedkinetics.incomplete_silicon_print": "Incomplete Silicon Print",
   "itemGroup.createappliedkinetics": "Create Applied Kinetics",
-  "tooltip.createappliedkinetics.energy_provider": "\u00A77Provides energy to AE's \u00A7rEnergy Acceptor"
+  "tooltip.createappliedkinetics.energy_provider": "Provides energy to AE's \u00A7fEnergy Acceptor",
+  "tooltip.createappliedkinetics.me_proxy": "A proxy to access \u00A7fAE2 \u00A7rnetwork's item/fluid"
 }

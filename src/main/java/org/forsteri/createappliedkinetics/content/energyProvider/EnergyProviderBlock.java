@@ -1,4 +1,4 @@
-package org.forsteri.createappliedkinetics.content;
+package org.forsteri.createappliedkinetics.content.energyProvider;
 
 import appeng.block.networking.EnergyAcceptorBlock;
 import com.simibubi.create.AllShapes;

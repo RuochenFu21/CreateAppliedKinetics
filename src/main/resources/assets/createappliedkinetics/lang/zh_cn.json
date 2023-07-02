@@ -1,5 +1,6 @@
 {
   "block.createappliedkinetics.energy_provider": "能量传输器",
+  "block.createappliedkinetics.me_proxy": "ME储存代理器",
   "item.createappliedkinetics.incomplete_calculation_processor": "Incomplete Calculation Processor",
   "item.createappliedkinetics.incomplete_calculation_processor_press": "Incomplete Calculation Processor Press",
   "item.createappliedkinetics.incomplete_engineering_processor": "Incomplete Engineering Processor",
@@ -12,5 +13,6 @@
   "item.createappliedkinetics.incomplete_silicon_press": "Incomplete Silicon Press",
   "item.createappliedkinetics.incomplete_silicon_print": "Incomplete Silicon Print",
   "itemGroup.createappliedkinetics": "机械动力：应用机械",
-  "tooltip.createappliedkinetics.energy_provider": "\u00A77将机械能量传输进应用能源的\u00A7r能源接收器"
+  "tooltip.createappliedkinetics.energy_provider": "将机械能量传输进应用能源的§f能源接收器",
+  "tooltip.createappliedkinetics.me_proxy": "代理§fAE网络§r的物品或流体储备"
 }

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "createappliedkinetics:block/me_proxy"
+    }
+  }
+}

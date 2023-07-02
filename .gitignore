@@ -2,3 +2,5 @@ run/
 build/
 .idea/
 .gradle/
+
+Icon*

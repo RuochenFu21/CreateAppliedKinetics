@@ -103,7 +103,11 @@ public class MEProxyInventoryHandler implements IItemHandler, IFluidHandler {
     @NotNull
     @Override
     public ItemStack extractItem(int slot, int amount, boolean simulate) {
-        return storage.extract(AEItemKey.of(getStackInSlot(slot)), amount, simulate ? Actionable.SIMULATE : Actionable.MODULATE, IActionSource.empty()) > 0 ? getStackInSlot(slot) : ItemStack.EMPTY;
+        ItemStack stackInSlot = getStackInSlot(slot).copy();
+
+        stackInSlot.setCount((int) storage.extract(AEItemKey.of(getStackInSlot(slot)), amount, simulate ? Actionable.SIMULATE : Actionable.MODULATE, IActionSource.empty()));
+
+        return stackInSlot;
     }
 
     @Override

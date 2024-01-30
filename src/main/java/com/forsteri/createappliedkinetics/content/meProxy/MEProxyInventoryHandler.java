@@ -1,4 +1,4 @@
-package org.forsteri.createappliedkinetics.content.meProxy;
+package com.forsteri.createappliedkinetics.content.meProxy;
 
 import appeng.api.config.Actionable;
 import appeng.api.networking.security.IActionSource;
@@ -87,7 +87,7 @@ public class MEProxyInventoryHandler implements IItemHandler, IFluidHandler {
         if (slot >= getItemKeys().size())
             return ItemStack.EMPTY;
 
-        return getItemKeys().get(slot).toStack(((int) storage.extract(getItemKeys().get(slot), 64, Actionable.SIMULATE, IActionSource.empty())));
+        return getItemKeys().get(slot).toStack(((int) storage.extract(getItemKeys().get(slot), Integer.MAX_VALUE, Actionable.SIMULATE, IActionSource.empty())));
     }
 
     @NotNull

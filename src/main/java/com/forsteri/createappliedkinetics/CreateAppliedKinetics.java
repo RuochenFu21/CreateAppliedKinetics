@@ -1,4 +1,4 @@
-package org.forsteri.createappliedkinetics;
+package com.forsteri.createappliedkinetics;
 
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.Create;
@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.forgespi.language.IModFileInfo;
 import net.minecraftforge.forgespi.locating.IModFile;
-import org.forsteri.createappliedkinetics.entry.Registration;
+import com.forsteri.createappliedkinetics.entry.Registration;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file

@@ -1,4 +1,4 @@
-package org.forsteri.createappliedkinetics.content.energyProvider;
+package com.forsteri.createappliedkinetics.content.energyProvider;
 
 import appeng.block.networking.EnergyAcceptorBlock;
 import com.simibubi.create.AllShapes;
@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.forsteri.createappliedkinetics.entry.Registration;
+import com.forsteri.createappliedkinetics.entry.Registration;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;

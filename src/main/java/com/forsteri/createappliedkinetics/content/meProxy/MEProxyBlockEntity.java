@@ -1,4 +1,4 @@
-package org.forsteri.createappliedkinetics.content.meProxy;
+package com.forsteri.createappliedkinetics.content.meProxy;
 
 import appeng.blockentity.grid.AENetworkBlockEntity;
 import appeng.me.storage.NetworkStorage;

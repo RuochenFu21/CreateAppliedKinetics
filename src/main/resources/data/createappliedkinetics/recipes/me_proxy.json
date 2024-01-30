@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "aba",
+    "ced",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:ingots/iron"
+    },
+    "b": {
+      "tag": "forge:glass"
+    },
+    "c": {
+      "item": "ae2:annihilation_core"
+    },
+    "d": {
+      "item": "ae2:formation_core"
+    },
+    "e": {
+      "item": "ae2:logic_processor"
+    }
+  },
+  "result": {
+    "item": "createappliedkinetics:me_proxy"
+  }
+}

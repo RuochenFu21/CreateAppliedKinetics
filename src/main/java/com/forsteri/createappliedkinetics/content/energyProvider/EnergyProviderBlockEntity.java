@@ -1,4 +1,4 @@
-package org.forsteri.createappliedkinetics.content.energyProvider;
+package com.forsteri.createappliedkinetics.content.energyProvider;
 
 import appeng.api.config.Actionable;
 import appeng.api.networking.IGrid;

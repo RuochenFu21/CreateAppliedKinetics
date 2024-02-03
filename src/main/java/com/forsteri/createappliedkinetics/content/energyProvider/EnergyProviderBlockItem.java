@@ -3,7 +3,6 @@ package com.forsteri.createappliedkinetics.content.energyProvider;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -23,6 +22,6 @@ public class EnergyProviderBlockItem extends BlockItem {
     public void appendHoverText(@NotNull ItemStack p_40572_, @Nullable Level p_40573_, @NotNull List<Component> p_40574_, @NotNull TooltipFlag p_40575_) {
         super.appendHoverText(p_40572_, p_40573_, p_40574_, p_40575_);
 
-        p_40574_.add(new TranslatableComponent("tooltip.createappliedkinetics.energy_provider").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+        p_40574_.add(Component.translatable("tooltip.createappliedkinetics.energy_provider").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
     }
 }

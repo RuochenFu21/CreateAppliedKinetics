@@ -1,5 +1,12 @@
 package com.forsteri.createappliedkinetics.entry;
 
+import com.forsteri.createappliedkinetics.CreateAppliedKinetics;
+import com.forsteri.createappliedkinetics.content.energyProvider.EnergyProviderBlock;
+import com.forsteri.createappliedkinetics.content.energyProvider.EnergyProviderBlockEntity;
+import com.forsteri.createappliedkinetics.content.energyProvider.EnergyProviderBlockItem;
+import com.forsteri.createappliedkinetics.content.meProxy.MEProxyBlock;
+import com.forsteri.createappliedkinetics.content.meProxy.MEProxyBlockEntity;
+import com.forsteri.createappliedkinetics.content.meProxy.MEProxyBlockItem;
 import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.content.kinetics.base.HalfShaftInstance;
 import com.simibubi.create.content.kinetics.base.ShaftRenderer;
@@ -12,18 +19,15 @@ import com.simibubi.create.foundation.item.TooltipModifier;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemEntry;
-import com.forsteri.createappliedkinetics.CreateAppliedKinetics;
-import com.forsteri.createappliedkinetics.content.energyProvider.EnergyProviderBlock;
-import com.forsteri.createappliedkinetics.content.energyProvider.EnergyProviderBlockEntity;
-import com.forsteri.createappliedkinetics.content.meProxy.MEProxyBlock;
-import com.forsteri.createappliedkinetics.content.meProxy.MEProxyBlockEntity;
-import com.forsteri.createappliedkinetics.content.meProxy.MEProxyBlockItem;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import com.forsteri.createappliedkinetics.content.energyProvider.EnergyProviderBlockItem;
-import org.jetbrains.annotations.NotNull;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
 
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 
@@ -70,7 +74,8 @@ public class Registration {
     public static BlockEntry<EnergyProviderBlock> energyProviderBlock = CreateAppliedKinetics.REGISTERATE
             .setTooltipModifierFactory(item -> new ItemDescription.Modifier(item, TooltipHelper.Palette.STANDARD_CREATE)
             .andThen(TooltipModifier.mapNull(KineticStats.create(item))))
-            .creativeModeTab(() -> Registration.TAB).block("energy_provider", EnergyProviderBlock::new)
+            .setCreativeTab(Registration.TAB)
+            .block("energy_provider", EnergyProviderBlock::new)
             .blockstate(BlockStateGen.directionalBlockProvider(false))
             .properties(BlockBehaviour.Properties::noOcclusion)
             .transform(BlockStressDefaults.setImpact(4.0))
@@ -97,12 +102,28 @@ public class Registration {
             .onRegister(blockEntityType -> meProxyBlock.get().setBlockEntity(MEProxyBlockEntity.class, blockEntityType, (p_155253_, p_155254_, p_155255_, p_155256_) -> {}, (p_155253_, p_155254_, p_155255_, p_155256_) -> {}))
             .register();
 
-    public static CreativeModeTab TAB = new CreativeModeTab(CreateAppliedKinetics.MODID) {
-        @Override
-        public @NotNull ItemStack makeIcon() {
-            return new ItemStack(energyProviderBlock.get().asItem());
-        }
-    };
+    private static final DeferredRegister<CreativeModeTab> REGISTER
+            = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, CreateAppliedKinetics.MODID);
 
-    public static void register(){}
+    public static final RegistryObject<CreativeModeTab> TAB =
+            REGISTER.register("ender_transmission",
+                    () -> CreativeModeTab.builder()
+                            .title(Component.translatable("itemGroup.createappliedkinetics"))
+                            .withTabsBefore(ResourceLocation.of("create:palettes", ':'))
+                            .icon(() -> energyProviderBlock.get().asItem().getDefaultInstance())
+                            .displayItems(
+                                    (parameters, output) ->
+                                            output.acceptAll(
+                                                    CreateAppliedKinetics.REGISTERATE.getAll(Registries.ITEM).stream().filter(
+                                                            itemRegistryEntry -> !(itemRegistryEntry.get() instanceof SequencedAssemblyItem)
+                                                    ).map(
+                                                            regObj -> new ItemStack(regObj.get())
+                                                    ).toList()
+                                            )
+                            )
+                            .build());
+
+    public static void register(IEventBus modEventBus) {
+        REGISTER.register(modEventBus);
+    }
 }

@@ -4,12 +4,14 @@ import com.mojang.logging.LogUtils;
 import com.simibubi.create.Create;
 import com.simibubi.create.foundation.ModFilePackResources;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import com.simibubi.create.foundation.utility.Components;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddPackFindersEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
@@ -33,10 +35,11 @@ public class CreateAppliedKinetics {
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
-        REGISTERATE.registerEventListeners(FMLJavaModLoadingContext.get()
-                .getModEventBus());
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        Registration.register();
+        REGISTERATE.registerEventListeners(eventBus);
+
+        Registration.register(eventBus);
     }
 
 
@@ -53,7 +56,19 @@ public class CreateAppliedKinetics {
                     return;
                 }
                 IModFile modFile = modFileInfo.getFile();
-                event.addRepositorySource((consumer, constructor) -> consumer.accept(Pack.create(CreateAppliedKinetics.asResource("remove_ae_recipes").toString(), false, () -> new ModFilePackResources("Remove AE Recipes", modFile, "datapacks/remove_ae_recipes"), constructor, Pack.Position.TOP, PackSource.DEFAULT)));
+                event.addRepositorySource(consumer -> {
+                    Pack pack = Pack.readMetaAndCreate(
+                        CreateAppliedKinetics.asResource("remove_ae_recipes").toString(),
+                        Components.literal("Remove AE Recipes"),
+                        false,
+                        id -> new ModFilePackResources(id, modFile, "datapacks/remove_ae_recipes"),
+                        PackType.SERVER_DATA,
+                        Pack.Position.TOP,
+                        PackSource.DEFAULT);
+
+                    if (pack != null)
+                        consumer.accept(pack);
+                });
             }
         }
     }

@@ -1,0 +1,77 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "createappliedkinetics:ae2_overwrite"
+        }
+      ],
+      "recipe": {
+        "type": "create:sequenced_assembly",
+        "ingredient": {
+          "item": "create:golden_sheet"
+        },
+        "transitionalItem": {
+          "item": "createappliedkinetics:incomplete_printed_logic_circuit"
+        },
+        "sequence": [
+          {
+            "keepHeldItem": true,
+            "type": "create:deploying",
+            "ingredients": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_logic_circuit"
+              },
+              {
+                "item": "ae2:logic_processor_press"
+              }
+            ],
+            "results": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_logic_circuit"
+              }
+            ]
+          },
+          {
+            "type": "create:pressing",
+            "ingredients": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_logic_circuit"
+              }
+            ],
+            "results": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_logic_circuit"
+              }
+            ]
+          }
+        ],
+        "results": [
+          {
+            "item": "ae2:printed_logic_processor"
+          }
+        ],
+        "loops": 1
+      }
+    },
+    {
+      "conditions": [],
+      "recipe": {
+        "type": "ae2:inscriber",
+        "ingredients": {
+          "middle": {
+            "tag": "forge:ingots/gold"
+          },
+          "top": {
+            "item": "ae2:logic_processor_press"
+          }
+        },
+        "mode": "inscribe",
+        "result": {
+          "item": "ae2:printed_logic_processor"
+        }
+      }
+    }
+  ]
+}

@@ -20,7 +20,7 @@ import org.slf4j.Logger;
 public class CreateAppliedKinetics {
 
     // Directly reference a slf4j logger
-    @SuppressWarnings("unused") 
+    @SuppressWarnings("unused")
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public static final String MODID = "createappliedkinetics";

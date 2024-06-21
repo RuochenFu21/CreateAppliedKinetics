@@ -1,0 +1,77 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "createappliedkinetics:ae2_overwrite"
+        }
+      ],
+      "recipe": {
+        "type": "create:sequenced_assembly",
+        "ingredient": {
+          "item": "minecraft:diamond"
+        },
+        "transitionalItem": {
+          "item": "createappliedkinetics:incomplete_printed_engineering_circuit"
+        },
+        "sequence": [
+          {
+            "keepHeldItem": true,
+            "type": "create:deploying",
+            "ingredients": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_engineering_circuit"
+              },
+              {
+                "item": "ae2:engineering_processor_press"
+              }
+            ],
+            "results": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_engineering_circuit"
+              }
+            ]
+          },
+          {
+            "type": "create:pressing",
+            "ingredients": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_engineering_circuit"
+              }
+            ],
+            "results": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_engineering_circuit"
+              }
+            ]
+          }
+        ],
+        "results": [
+          {
+            "item": "ae2:printed_engineering_processor"
+          }
+        ],
+        "loops": 1
+      }
+    },
+    {
+      "conditions": [],
+      "recipe": {
+        "type": "ae2:inscriber",
+        "ingredients": {
+          "middle": {
+            "tag": "forge:gems/diamond"
+          },
+          "top": {
+            "item": "ae2:engineering_processor_press"
+          }
+        },
+        "mode": "inscribe",
+        "result": {
+          "item": "ae2:printed_engineering_processor"
+        }
+      }
+    }
+  ]
+}

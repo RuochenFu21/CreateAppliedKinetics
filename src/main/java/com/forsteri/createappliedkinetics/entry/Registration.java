@@ -7,18 +7,19 @@ import com.forsteri.createappliedkinetics.content.energyProvider.EnergyProviderB
 import com.forsteri.createappliedkinetics.content.meProxy.MEProxyBlock;
 import com.forsteri.createappliedkinetics.content.meProxy.MEProxyBlockEntity;
 import com.forsteri.createappliedkinetics.content.meProxy.MEProxyBlockItem;
-import com.simibubi.create.content.kinetics.BlockStressDefaults;
-import com.simibubi.create.content.kinetics.base.HalfShaftInstance;
+import com.simibubi.create.AllPartialModels;
+import com.simibubi.create.api.stress.BlockStressValues;
+import com.simibubi.create.content.kinetics.base.OrientedRotatingVisual;
 import com.simibubi.create.content.kinetics.base.ShaftRenderer;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.item.ItemDescription;
 import com.simibubi.create.foundation.item.KineticStats;
-import com.simibubi.create.foundation.item.TooltipHelper;
 import com.simibubi.create.foundation.item.TooltipModifier;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemEntry;
+import net.createmod.catnip.lang.FontHelper;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -72,19 +73,19 @@ public class Registration {
     }
 
     public static BlockEntry<EnergyProviderBlock> energyProviderBlock = CreateAppliedKinetics.REGISTERATE
-            .setTooltipModifierFactory(item -> new ItemDescription.Modifier(item, TooltipHelper.Palette.STANDARD_CREATE)
+            .setTooltipModifierFactory(item -> new ItemDescription.Modifier(item, FontHelper.Palette.STANDARD_CREATE)
             .andThen(TooltipModifier.mapNull(KineticStats.create(item))))
             .setCreativeTab(Registration.TAB)
             .block("energy_provider", EnergyProviderBlock::new)
             .blockstate(BlockStateGen.directionalBlockProvider(false))
             .properties(BlockBehaviour.Properties::noOcclusion)
-            .transform(BlockStressDefaults.setImpact(4.0))
+            .onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 4.0))
             .item(EnergyProviderBlockItem::new)
             .transform(customItemModel())
             .register();
 
     public static BlockEntityEntry<EnergyProviderBlockEntity> energyProviderBlockEntity = CreateAppliedKinetics.REGISTERATE.blockEntity("energy_provider", EnergyProviderBlockEntity::new)
-            .instance(() -> HalfShaftInstance::new)
+            .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF))
             .renderer(() -> ShaftRenderer::new)
             .validBlock(energyProviderBlock)
             .register();

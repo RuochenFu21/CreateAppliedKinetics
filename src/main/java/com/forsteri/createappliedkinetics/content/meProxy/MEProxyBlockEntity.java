@@ -16,6 +16,7 @@ import org.jetbrains.annotations.Nullable;
 public class MEProxyBlockEntity extends AENetworkBlockEntity {
     public MEProxyBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState blockState) {
         super(blockEntityType, pos, blockState);
+        this.getMainNode().setFlags(GridFlags.REQUIRE_CHANNEL);
     }
 
     @NotNull

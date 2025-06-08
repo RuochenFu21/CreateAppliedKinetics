@@ -1,29 +1,35 @@
 package com.forsteri.createappliedkinetics.content.meProxy;
 
-import appeng.blockentity.grid.AENetworkBlockEntity;
-import appeng.me.storage.NetworkStorage;
+import appeng.api.inventories.InternalInventory;
+import appeng.blockentity.grid.AENetworkedPoweredBlockEntity;
+import com.forsteri.createappliedkinetics.entry.Registration;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 
-public class MEProxyBlockEntity extends AENetworkBlockEntity {
+public class MEProxyBlockEntity extends AENetworkedPoweredBlockEntity {
     public MEProxyBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState blockState) {
         super(blockEntityType, pos, blockState);
+        this.getMainNode().setIdlePowerUsage(0.0F);
     }
 
-    @NotNull
     @Override
-    public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (getMainNode().getGrid() != null && (cap == ForgeCapabilities.ITEM_HANDLER || cap == ForgeCapabilities.FLUID_HANDLER)) {
-            return LazyOptional.of(() -> new MEProxyInventoryHandler(((NetworkStorage) getMainNode().getGrid().getStorageService().getInventory()))).cast();
-        }
+    public InternalInventory getInternalInventory() {
+        return InternalInventory.empty();
+    }
 
-        return super.getCapability(cap, side);
+    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                Registration.meProxyBlockEntity.get(),
+                (be, context) -> new MEProxyInventoryHandler(be)
+        );
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                Registration.meProxyBlockEntity.get(),
+                (be, context) -> new MEProxyInventoryHandler(be)
+        );
     }
 }

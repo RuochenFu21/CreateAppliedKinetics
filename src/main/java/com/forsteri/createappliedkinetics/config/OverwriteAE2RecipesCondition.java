@@ -1,48 +1,29 @@
 package com.forsteri.createappliedkinetics.config;
 
-import com.google.gson.JsonObject;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.common.crafting.conditions.ICondition;
-import net.minecraftforge.common.crafting.conditions.IConditionSerializer;
+import com.mojang.serialization.MapCodec;
+import net.neoforged.neoforge.common.conditions.ICondition;
 
-import static com.forsteri.createappliedkinetics.CreateAppliedKinetics.asResource;
 import static com.forsteri.createappliedkinetics.config.CreateAppliedKineticsConfig.OVERWRITE_AE2_RECIPES;
 
 public class OverwriteAE2RecipesCondition implements ICondition {
+    public static final OverwriteAE2RecipesCondition INSTANCE = new OverwriteAE2RecipesCondition();
 
-    private static final OverwriteAE2RecipesCondition INSTANCE = new OverwriteAE2RecipesCondition();
+    public static MapCodec<OverwriteAE2RecipesCondition> CODEC = MapCodec.unit(INSTANCE).stable();
 
-    private static final ResourceLocation NAME = asResource( "ae2_overwrite");
+    private OverwriteAE2RecipesCondition() {}
+
     @Override
-    public ResourceLocation getID() {
-        return NAME;
+    public MapCodec<? extends ICondition> codec() {
+        return CODEC;
+    }
+
+    @Override
+    public String toString() {
+        return "ae2_overwrite";
     }
 
     @Override
     public boolean test(IContext context) {
         return OVERWRITE_AE2_RECIPES.get();
-    }
-
-    public static void register() {
-        CraftingHelper.register(Serializer.INSTANCE);
-    }
-
-    public static class Serializer implements IConditionSerializer<OverwriteAE2RecipesCondition> {
-
-        private static final Serializer INSTANCE = new Serializer();
-
-        @Override
-        public void write(JsonObject json, OverwriteAE2RecipesCondition value) {}
-
-        @Override
-        public OverwriteAE2RecipesCondition read(JsonObject json) {
-            return OverwriteAE2RecipesCondition.INSTANCE;
-        }
-
-        @Override
-        public ResourceLocation getID() {
-            return NAME;
-        }
     }
 }

@@ -1,19 +1,17 @@
 package com.forsteri.createappliedkinetics;
 
 import com.forsteri.createappliedkinetics.config.CreateAppliedKineticsConfig;
-import com.forsteri.createappliedkinetics.config.OverwriteAE2RecipesCondition;
+import com.forsteri.createappliedkinetics.content.meProxy.MEProxyBlockEntity;
 import com.forsteri.createappliedkinetics.entry.Registration;
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegisterEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -26,30 +24,28 @@ public class CreateAppliedKinetics {
 
     public static final String MODID = "createappliedkinetics";
 
-    public CreateAppliedKinetics() {
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    public CreateAppliedKinetics(net.neoforged.bus.api.IEventBus modEventBus, ModContainer modContainer) {
+        modContainer.registerConfig(ModConfig.Type.COMMON, CreateAppliedKineticsConfig.SPEC);
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CreateAppliedKineticsConfig.SPEC);
+//        NeoForge.EVENT_BUS.register(this);
+        CreateAppliedKinetics.REGISTERATE.defaultCreativeTab("createappliedkinetics");
+        REGISTERATE.registerEventListeners(modEventBus);
 
-        REGISTERATE.registerEventListeners(eventBus);
-
-        Registration.register(eventBus);
+        Registration.register(modEventBus);
     }
 
 
     public static final CreateRegistrate REGISTERATE = CreateRegistrate.create(MODID);
 
-    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
     public static class ModBusEvents {
         @SubscribeEvent
-        public static void registerRecipeCondition(RegisterEvent event) {
-            if (event.getRegistryKey().equals(ForgeRegistries.Keys.RECIPE_SERIALIZERS)) {
-                OverwriteAE2RecipesCondition.register();
-            }
+        public static void registerCapabilitiesEvent(RegisterCapabilitiesEvent event) {
+            MEProxyBlockEntity.registerCapabilities(event);
         }
     }
 
     public static ResourceLocation asResource(String path) {
-        return new ResourceLocation(MODID, path);
+        return ResourceLocation.fromNamespaceAndPath(MODID, path);
     }
 }

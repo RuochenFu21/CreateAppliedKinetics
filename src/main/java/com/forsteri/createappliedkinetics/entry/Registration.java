@@ -1,12 +1,15 @@
 package com.forsteri.createappliedkinetics.entry;
 
 import com.forsteri.createappliedkinetics.CreateAppliedKinetics;
+import com.forsteri.createappliedkinetics.config.OverwriteAE2RecipesCondition;
 import com.forsteri.createappliedkinetics.content.energyProvider.EnergyProviderBlock;
 import com.forsteri.createappliedkinetics.content.energyProvider.EnergyProviderBlockEntity;
 import com.forsteri.createappliedkinetics.content.energyProvider.EnergyProviderBlockItem;
 import com.forsteri.createappliedkinetics.content.meProxy.MEProxyBlock;
 import com.forsteri.createappliedkinetics.content.meProxy.MEProxyBlockEntity;
 import com.forsteri.createappliedkinetics.content.meProxy.MEProxyBlockItem;
+import com.mojang.serialization.MapCodec;
+import com.simibubi.create.AllCreativeModeTabs;
 import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.api.stress.BlockStressValues;
 import com.simibubi.create.content.kinetics.base.OrientedRotatingVisual;
@@ -24,11 +27,14 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.conditions.ICondition;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+
+import java.util.function.Supplier;
 
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 
@@ -75,7 +81,6 @@ public class Registration {
     public static BlockEntry<EnergyProviderBlock> energyProviderBlock = CreateAppliedKinetics.REGISTERATE
             .setTooltipModifierFactory(item -> new ItemDescription.Modifier(item, FontHelper.Palette.STANDARD_CREATE)
             .andThen(TooltipModifier.mapNull(KineticStats.create(item))))
-            .setCreativeTab(Registration.TAB)
             .block("energy_provider", EnergyProviderBlock::new)
             .blockstate(BlockStateGen.directionalBlockProvider(false))
             .properties(BlockBehaviour.Properties::noOcclusion)
@@ -106,25 +111,33 @@ public class Registration {
     private static final DeferredRegister<CreativeModeTab> REGISTER
             = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, CreateAppliedKinetics.MODID);
 
-    public static final RegistryObject<CreativeModeTab> TAB =
-            REGISTER.register("ender_transmission",
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TAB =
+            REGISTER.register("createappliedkinetics",
                     () -> CreativeModeTab.builder()
                             .title(Component.translatable("itemGroup.createappliedkinetics"))
-                            .withTabsBefore(ResourceLocation.of("create:palettes", ':'))
+                            .withTabsBefore(AllCreativeModeTabs.PALETTES_CREATIVE_TAB.getId())
                             .icon(() -> energyProviderBlock.get().asItem().getDefaultInstance())
-                            .displayItems(
-                                    (parameters, output) ->
-                                            output.acceptAll(
-                                                    CreateAppliedKinetics.REGISTERATE.getAll(Registries.ITEM).stream().filter(
-                                                            itemRegistryEntry -> !(itemRegistryEntry.get() instanceof SequencedAssemblyItem)
-                                                    ).map(
-                                                            regObj -> new ItemStack(regObj.get())
-                                                    ).toList()
-                                            )
-                            )
+//                            .displayItems(
+//                                    (parameters, output) ->
+//                                            output.acceptAll(
+//                                                    CreateAppliedKinetics.REGISTERATE.getAll(Registries.ITEM).stream().filter(
+//                                                            itemRegistryEntry -> !(itemRegistryEntry.get() instanceof SequencedAssemblyItem)
+//                                                    ).map(
+//                                                            regObj -> new ItemStack(regObj.get())
+//                                                    ).toList()
+//                                            )
+//                            )
                             .build());
+
+    private static final DeferredRegister<MapCodec<? extends ICondition>> CONDITION_REGISTER
+            = DeferredRegister.create(NeoForgeRegistries.Keys.CONDITION_CODECS, CreateAppliedKinetics.MODID);
+
+
+    public static final Supplier<MapCodec<OverwriteAE2RecipesCondition>> OVERWRITE_AE_RECIPE =
+            CONDITION_REGISTER.register("ae2_overwrite", () -> OverwriteAE2RecipesCondition.CODEC);
 
     public static void register(IEventBus modEventBus) {
         REGISTER.register(modEventBus);
+        CONDITION_REGISTER.register(modEventBus);
     }
 }

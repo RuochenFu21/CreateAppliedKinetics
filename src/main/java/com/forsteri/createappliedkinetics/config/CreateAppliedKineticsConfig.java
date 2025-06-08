@@ -1,13 +1,13 @@
 package com.forsteri.createappliedkinetics.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class CreateAppliedKineticsConfig {
-    public static final ForgeConfigSpec.BooleanValue OVERWRITE_AE2_RECIPES;
-    public static final ForgeConfigSpec SPEC;
+    public static final ModConfigSpec.BooleanValue OVERWRITE_AE2_RECIPES;
+    public static final ModConfigSpec SPEC;
 
     static {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
 
         OVERWRITE_AE2_RECIPES =  builder
                 .comment("If AE2 Inscriber recipes should be remove and replaced with Create Sequenced Assembly recipes",

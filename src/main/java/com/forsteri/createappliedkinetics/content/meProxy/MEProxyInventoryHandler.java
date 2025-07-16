@@ -73,7 +73,15 @@ public class MEProxyInventoryHandler implements IItemHandler, IFluidHandler {
     @NotNull
     @Override
     public FluidStack drain(int maxDrain, FluidAction action) {
-        return drain(getFluidInTank(0), action);
+        FluidStack copied = getFluidInTank(0).copy();
+
+        if (copied.getFluid() instanceof EmptyFluid)
+            return FluidStack.EMPTY;
+
+        if (copied.getAmount() > maxDrain)
+            copied.setAmount(maxDrain);
+
+        return drain(copied, action);
     }
 
     @Override

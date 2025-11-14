@@ -1,5 +1,6 @@
 {
   "type": "create:mechanical_crafting",
+  "accept_mirrored": false,
   "pattern": [
     " L ",
     "CBC",
@@ -23,7 +24,7 @@
     }
   },
   "result": {
-    "item": "createappliedkinetics:energy_provider"
-  },
-  "acceptMirrored": false
+    "count": 1,
+    "id": "createappliedkinetics:energy_provider"
+  }
 }

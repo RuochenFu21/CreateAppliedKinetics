@@ -7,10 +7,10 @@
   ],
   "key": {
     "a": {
-      "tag": "forge:ingots/iron"
+      "tag": "c:ingots/iron"
     },
     "b": {
-      "tag": "forge:glass"
+      "tag": "c:glass_blocks"
     },
     "c": {
       "item": "ae2:annihilation_core"
@@ -23,6 +23,7 @@
     }
   },
   "result": {
-    "item": "createappliedkinetics:me_proxy"
+    "count": 1,
+    "id": "createappliedkinetics:me_proxy"
   }
 }

@@ -104,9 +104,11 @@ public class Registration {
             .register();
 
     public static BlockEntityEntry<MEProxyBlockEntity> meProxyBlockEntity = CreateAppliedKinetics.REGISTERATE.blockEntity("me_proxy", MEProxyBlockEntity::new)
-            .validBlock(meProxyBlock)
-            .onRegister(blockEntityType -> meProxyBlock.get().setBlockEntity(MEProxyBlockEntity.class, blockEntityType, (p_155253_, p_155254_, p_155255_, p_155256_) -> {}, (p_155253_, p_155254_, p_155255_, p_155256_) -> {}))
-            .register();
+        .validBlock(meProxyBlock)
+        .onRegister(blockEntityType -> meProxyBlock.get().setBlockEntity(MEProxyBlockEntity.class, blockEntityType,
+            null,
+            MEProxyBlockEntity::tick))
+        .register();
 
     private static final DeferredRegister<CreativeModeTab> REGISTER
             = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, CreateAppliedKinetics.MODID);
@@ -117,16 +119,6 @@ public class Registration {
                             .title(Component.translatable("itemGroup.createappliedkinetics"))
                             .withTabsBefore(AllCreativeModeTabs.PALETTES_CREATIVE_TAB.getId())
                             .icon(() -> energyProviderBlock.get().asItem().getDefaultInstance())
-//                            .displayItems(
-//                                    (parameters, output) ->
-//                                            output.acceptAll(
-//                                                    CreateAppliedKinetics.REGISTERATE.getAll(Registries.ITEM).stream().filter(
-//                                                            itemRegistryEntry -> !(itemRegistryEntry.get() instanceof SequencedAssemblyItem)
-//                                                    ).map(
-//                                                            regObj -> new ItemStack(regObj.get())
-//                                                    ).toList()
-//                                            )
-//                            )
                             .build());
 
     private static final DeferredRegister<MapCodec<? extends ICondition>> CONDITION_REGISTER

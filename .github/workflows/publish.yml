@@ -1,8 +1,6 @@
 name: Auto MC Publish
 
-on:
-  push:
-    branches: [ 1.21.1-new, main ]
+on: push
 
 jobs:
   publish:

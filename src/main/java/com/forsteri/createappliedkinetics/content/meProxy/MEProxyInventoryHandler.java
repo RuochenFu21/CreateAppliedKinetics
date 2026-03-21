@@ -113,7 +113,7 @@ public class MEProxyInventoryHandler implements IItemHandler, IFluidHandler {
 
     @Override
     public int getSlots() {
-        return getItemKeys().size() + 16; // Allocate 16 slots for input
+        return getItemKeys().size() + 16;
     }
 
     @NotNull
@@ -166,10 +166,4 @@ public class MEProxyInventoryHandler implements IItemHandler, IFluidHandler {
     public boolean isItemValid(int slot, @NotNull ItemStack stack) {
         return insertItem(slot, stack, true).getCount() == 0;
     }
-
-//    @Override
-//    public void setStackInSlot(int slot, ItemStack stack) {
-//
-//
-//    }
 }

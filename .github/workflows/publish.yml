@@ -1,0 +1,7 @@
+name: Publish
+on: push
+
+jobs:
+  run:
+    uses: Forsteri123/.github/.github/workflows/mc-publish.yml@master
+    secrets: inherit

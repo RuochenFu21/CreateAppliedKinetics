@@ -87,6 +87,8 @@ jobs:
               version_number: $ver,
               changelog: $cl,
               dependencies: [],
+              featured: false,
+              status: "listed",
               game_versions: [$mc],
               version_type: "release",
               loaders: ["neoforge"],

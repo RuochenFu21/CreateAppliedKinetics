@@ -1,6 +1,8 @@
-name: Publish build
+name: Auto MC Publish
 
-on: push
+on:
+  push:
+    branches: [ 1.21.1-new, main ]
 
 jobs:
   publish:
@@ -8,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
@@ -43,6 +45,13 @@ jobs:
           
           DISPLAY_NAME="${MC_VER} v${MOD_VER}"
           
+          # 查询 CurseForge Game Versions API 获取版本 ID
+          CF_VER_ID=$(curl -s -H "X-Api-Token: ${{ secrets.CURSEFORGE_TOKEN }}" https://minecraft.curseforge.com/api/game/versions | jq -r ".[] | select(.name == \"$MC_VER\") | .id" | head -n 1)
+          
+          # 默认备用 ID (如果 API 匹配失败)
+          if [ -z "$CF_VER_ID" ]; then CF_VER_ID="10236"; fi
+
+          echo "cf_ver_id=$CF_VER_ID" >> $GITHUB_OUTPUT
           echo "mc_ver=$MC_VER" >> $GITHUB_OUTPUT
           echo "mod_ver=$MOD_VER" >> $GITHUB_OUTPUT
           echo "display_name=$DISPLAY_NAME" >> $GITHUB_OUTPUT
@@ -55,8 +64,8 @@ jobs:
           CF_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
           CF_PROJECT: ${{ vars.CURSEFORGE_PROJECT }}
         run: |
-          METADATA=$(jq -n --arg cl "$(cat changelog.md)" --arg dn "${{ steps.meta.outputs.display_name }}" \
-            '{changelog: $cl, changelogType: "markdown", displayName: $dn, gameVersions: [10236], releaseType: "release"}')
+          METADATA=$(jq -n --arg cl "$(cat changelog.md)" --arg dn "${{ steps.meta.outputs.display_name }}" --arg v "${{ steps.meta.outputs.cf_ver_id }}" \
+            '{changelog: $cl, changelogType: "markdown", displayName: $dn, gameVersions: [$v | tonumber], releaseType: "release"}')
           
           curl -X POST "https://minecraft.curseforge.com/api/projects/${CF_PROJECT}/upload-file" \
                -H "X-Api-Token: ${CF_TOKEN}" \
@@ -80,8 +89,6 @@ jobs:
               version_number: $ver,
               changelog: $cl,
               dependencies: [],
-              featured: false,
-              status: "listed",
               game_versions: [$mc],
               version_type: "release",
               loaders: ["neoforge"],

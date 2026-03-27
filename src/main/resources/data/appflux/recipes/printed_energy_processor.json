@@ -1,0 +1,61 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "appflux"
+        }
+      ],
+      "recipe": {
+        "type": "create:sequenced_assembly",
+        "ingredient": {
+          "item": "appflux:charged_redstone"
+        },
+        "transitionalItem": {
+          "item": "createappliedkinetics:incomplete_printed_energy_processor"
+        },
+        "sequence": [
+          {
+            "type": "create:deploying",
+            "keepHeldItem": true,
+            "ingredients": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_energy_processor"
+              },
+              {
+                "item": "appflux:energy_processor_press"
+              }
+            ],
+            "results": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_energy_processor"
+              }
+            ]
+          },
+          {
+            "type": "create:pressing",
+            "ingredients": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_energy_processor"
+              }
+            ],
+            "results": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_energy_processor"
+              }
+            ]
+          }
+        ],
+        "results": [
+          {
+            "item": "appflux:printed_energy_processor",
+            "count": 1
+          }
+        ],
+        "loops": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "advanced_ae"
+        }
+      ],
+      "recipe": {
+        "type": "create:sequenced_assembly",
+        "ingredient": {
+          "item": "advanced_ae:quantum_alloy"
+        },
+        "transitionalItem": {
+          "item": "createappliedkinetics:incomplete_printed_quantum_processor"
+        },
+        "sequence": [
+          {
+            "type": "create:deploying",
+            "keepHeldItem": true,
+            "ingredients": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_quantum_processor"
+              },
+              {
+                "item": "advanced_ae:quantum_processor_press"
+              }
+            ],
+            "results": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_quantum_processor"
+              }
+            ]
+          },
+          {
+            "type": "create:pressing",
+            "ingredients": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_quantum_processor"
+              }
+            ],
+            "results": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_quantum_processor"
+              }
+            ]
+          }
+        ],
+        "results": [
+          {
+            "item": "advanced_ae:printed_quantum_processor",
+            "count": 1
+          }
+        ],
+        "loops": 1
+      }
+    }
+  ]
+}

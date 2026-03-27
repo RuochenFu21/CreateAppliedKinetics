@@ -69,3 +69,21 @@ description='''
    versionRange="[0.5.1.a,)"
    ordering="NONE"
    side="BOTH"
+[[dependencies.createappliedkinetics]]
+   modId="appflux"
+   mandatory=false
+   versionRange="[0,)"
+   ordering="AFTER"
+   side="BOTH"
+[[dependencies.createappliedkinetics]]
+   modId="megacells"
+   mandatory=false
+   versionRange="[0,)"
+   ordering="AFTER"
+   side="BOTH"
+[[dependencies.createappliedkinetics]]
+   modId="advanced_ae"
+   mandatory=false
+   versionRange="[0,)"
+   ordering="AFTER"
+   side="BOTH"

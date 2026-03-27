@@ -27,6 +27,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -56,6 +57,33 @@ public class Registration {
     }
 
     static {
+        if (ModList.get().isLoaded("appflux")) {
+            sequencedIngredient("incomplete_energy_processor_press",
+                    ResourceLocation.of("appflux:item/energy_processor_press", ':'));
+            sequencedIngredient("incomplete_printed_energy_processor",
+                    ResourceLocation.of("appflux:item/printed_energy_processor", ':'));
+            sequencedIngredient("incomplete_energy_processor",
+                    ResourceLocation.of("appflux:item/energy_processor", ':'));
+        }
+        if (ModList.get().isLoaded("megacells")) {
+            sequencedIngredient("incomplete_accumulation_processor_press",
+                    ResourceLocation.of("megacells:item/accumulation_processor_press", ':'));
+            sequencedIngredient("incomplete_printed_accumulation_processor",
+                    ResourceLocation.of("megacells:item/printed_accumulation_processor", ':'));
+            sequencedIngredient("incomplete_accumulation_processor",
+                    ResourceLocation.of("megacells:item/accumulation_processor", ':'));
+        }
+        if (ModList.get().isLoaded("advanced_ae")) {
+            sequencedIngredient("incomplete_quantum_processor_press",
+                    ResourceLocation.of("advanced_ae:item/quantum_processor_press", ':'));
+            sequencedIngredient("incomplete_printed_quantum_processor",
+                    ResourceLocation.of("advanced_ae:item/printed_quantum_processor", ':'));
+            sequencedIngredient("incomplete_quantum_processor",
+                    ResourceLocation.of("advanced_ae:item/quantum_processor", ':'));
+        }
+    }
+
+    static {
         CreateAppliedKinetics.REGISTERATE.addRawLang("itemGroup.createappliedkinetics", "Create Applied Kinetics");
         CreateAppliedKinetics.REGISTERATE.addRawLang("tooltip.createappliedkinetics.energy_provider", "Provides energy to AE's §fEnergy Acceptor");
         CreateAppliedKinetics.REGISTERATE.addRawLang("tooltip.createappliedkinetics.me_proxy", "A proxy to access §fAE2 §rnetwork's item/fluid");
@@ -68,7 +96,8 @@ public class Registration {
 
     private static ItemEntry<SequencedAssemblyItem> sequencedIngredient(String name, ResourceLocation model) {
         return CreateAppliedKinetics.REGISTERATE.item(name, SequencedAssemblyItem::new)
-                .model((c, p) -> p.withExistingParent(c.getName(), model))
+                .model((c, p) -> p.getBuilder(c.getName())
+                        .parent(new net.minecraftforge.client.model.generators.ModelFile.UncheckedModelFile(model)))
                 .register();
     }
 

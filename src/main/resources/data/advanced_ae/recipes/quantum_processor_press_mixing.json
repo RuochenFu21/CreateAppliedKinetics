@@ -1,0 +1,32 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "advanced_ae"
+        }
+      ],
+      "recipe": {
+        "type": "create:mixing",
+        "ingredients": [
+          {
+            "item": "ae2:logic_processor_press"
+          },
+          {
+            "item": "ae2:engineering_processor_press"
+          },
+          {
+            "item": "advanced_ae:shattered_singularity"
+          }
+        ],
+        "results": [
+          {
+            "item": "advanced_ae:quantum_processor_press"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "appflux"
+        }
+      ],
+      "recipe": {
+        "type": "create:sequenced_assembly",
+        "ingredient": {
+          "item": "ae2:printed_silicon"
+        },
+        "transitionalItem": {
+          "item": "createappliedkinetics:incomplete_energy_processor"
+        },
+        "sequence": [
+          {
+            "type": "create:deploying",
+            "ingredients": [
+              {
+                "item": "createappliedkinetics:incomplete_energy_processor"
+              },
+              {
+                "item": "appflux:printed_energy_processor"
+              }
+            ],
+            "results": [
+              {
+                "item": "createappliedkinetics:incomplete_energy_processor"
+              }
+            ]
+          },
+          {
+            "type": "create:deploying",
+            "ingredients": [
+              {
+                "item": "createappliedkinetics:incomplete_energy_processor"
+              },
+              {
+                "item": "minecraft:redstone"
+              }
+            ],
+            "results": [
+              {
+                "item": "createappliedkinetics:incomplete_energy_processor"
+              }
+            ]
+          },
+          {
+            "type": "create:pressing",
+            "ingredients": [
+              {
+                "item": "createappliedkinetics:incomplete_energy_processor"
+              }
+            ],
+            "results": [
+              {
+                "item": "createappliedkinetics:incomplete_energy_processor"
+              }
+            ]
+          }
+        ],
+        "results": [
+          {
+            "item": "appflux:energy_processor",
+            "count": 1
+          }
+        ],
+        "loops": 1
+      }
+    }
+  ]
+}

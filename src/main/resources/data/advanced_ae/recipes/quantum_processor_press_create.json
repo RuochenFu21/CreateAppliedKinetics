@@ -1,0 +1,60 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "advanced_ae"
+        }
+      ],
+      "recipe": {
+        "type": "create:sequenced_assembly",
+        "ingredient": {
+          "item": "create:iron_sheet"
+        },
+        "transitionalItem": {
+          "item": "createappliedkinetics:incomplete_quantum_processor_press"
+        },
+        "sequence": [
+          {
+            "type": "create:deploying",
+            "keepHeldItem": true,
+            "ingredients": [
+              {
+                "item": "createappliedkinetics:incomplete_quantum_processor_press"
+              },
+              {
+                "item": "advanced_ae:quantum_processor_press"
+              }
+            ],
+            "results": [
+              {
+                "item": "createappliedkinetics:incomplete_quantum_processor_press"
+              }
+            ]
+          },
+          {
+            "type": "create:pressing",
+            "ingredients": [
+              {
+                "item": "createappliedkinetics:incomplete_quantum_processor_press"
+              }
+            ],
+            "results": [
+              {
+                "item": "createappliedkinetics:incomplete_quantum_processor_press"
+              }
+            ]
+          }
+        ],
+        "results": [
+          {
+            "item": "advanced_ae:quantum_processor_press"
+          }
+        ],
+        "loops": 1
+      }
+    }
+  ]
+}

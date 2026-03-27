@@ -1,0 +1,61 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "megacells"
+        }
+      ],
+      "recipe": {
+        "type": "create:sequenced_assembly",
+        "ingredient": {
+          "item": "megacells:sky_steel_ingot"
+        },
+        "transitionalItem": {
+          "item": "createappliedkinetics:incomplete_printed_accumulation_processor"
+        },
+        "sequence": [
+          {
+            "type": "create:deploying",
+            "keepHeldItem": true,
+            "ingredients": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_accumulation_processor"
+              },
+              {
+                "item": "megacells:accumulation_processor_press"
+              }
+            ],
+            "results": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_accumulation_processor"
+              }
+            ]
+          },
+          {
+            "type": "create:pressing",
+            "ingredients": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_accumulation_processor"
+              }
+            ],
+            "results": [
+              {
+                "item": "createappliedkinetics:incomplete_printed_accumulation_processor"
+              }
+            ]
+          }
+        ],
+        "results": [
+          {
+            "item": "megacells:printed_accumulation_processor",
+            "count": 1
+          }
+        ],
+        "loops": 1
+      }
+    }
+  ]
+}
